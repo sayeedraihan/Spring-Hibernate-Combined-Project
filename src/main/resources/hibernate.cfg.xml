@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection properties - Driver, URL, user, password -->
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://192.168.2.99:1433; databaseName=PRACTICE_DB</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password">Enosis123</property>
+        <!-- Connection Pool Size -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!-- Dialect is required to let Hibernate know the Database Type, MySQL, Oracle etc.
+            Hibernate 4 automatically figure out Dialect from Database Connection Metadata -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- SessionFactory Scope - Four Possible Values of this Property can be Possible
+            1) create - drop if existing schema exists and creates new one everytime
+            2) update - updates the Existing Schema
+            3) validate - validates the Schema and Perform User Operations
+            4) create-drop - creates the schema on session creation and drops the schema at the end of the session
+        -->
+        <!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
+
+        <!-- Outputs the SQL queries, should be disabled in Production -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- By Default this Property is set to False if you don't declare this
+        Property. if it set to True than you don't need to Commit the Transaction
+        into Database. Hibernate implicitly take care of committing Records into Database
+        after Each Session Transaction and if it is set to False then you need to
+        commit the Transaction explicitly. e.g. session.getTransaction().commit(); -->
+        <property name="hibernate.connection.autocommit">false</property>
+
+        <!-- mapping file, we can use Bean annotations too -->
+        <mapping resource="employee.hbm.xml" />
+        <mapping resource="department.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

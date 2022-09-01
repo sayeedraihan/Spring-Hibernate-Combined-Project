@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.example.springhibernate.model.Employee" table="EMPLOYEE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="UNAME" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="UROLE" />
+        </property>
+        <property name="wage" type="java.lang.Integer">
+            <column name="WAGE"/>
+        </property>
+        <property name="insertTime" type="timestamp">
+            <column name="insert_time" />
+        </property>
+    </class>
+</hibernate-mapping>
